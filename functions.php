@@ -1,12 +1,15 @@
 <?php
+// Fonction en charge d'afficher des messages dans la console
 function displayMessage($message)
 {
     echo $message;
 }
+// Fonction en charge de passer en minuscule une chaine de caractère
 function stringToLower($string)
 {
     return strtolower($string);
 }
+// Fonction en charge de créer le fichier JSON
 function createJsonFile($path, $json)
 {
     if (!file_put_contents($path, $json))
@@ -14,6 +17,7 @@ function createJsonFile($path, $json)
     else
         return true;
 }
+// Fonction en charge de créer la clé public et privée
 function createKeys()
 {
     $config = array(
@@ -29,4 +33,20 @@ function createKeys()
         'public_key' => $public_key,
         'private_key' => $private_key
     ]);
+}
+// Fonction en charge de récupérer le résultat final
+function getRealKey($md5)
+{
+    $f = 1;
+    for ($i = 0; $i < $f; $i++) {
+        $new_hash = md5($f);
+        for ($g = 0; $g < 100000; $g++) {
+            $new_hash = md5($new_hash);
+            if ($new_hash == $md5) {
+                return $f;
+                break 2;
+            }
+        }
+        $f++;
+    }
 }
